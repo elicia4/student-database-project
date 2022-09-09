@@ -33,3 +33,5 @@ typedef struct student{ // Структура студента: имя, день
 
 void input_student(student* std, int zach_num, int ex_num);
 void print_student(student* std);
+void init_student(student* std);
+void edit_student(student* std);
