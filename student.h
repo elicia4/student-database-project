@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <locale.h>
+#include <string.h>
 
 typedef struct { // Структура даты
   int day;
@@ -8,7 +9,7 @@ typedef struct { // Структура даты
   int year;
 } date;
 
-typedef struct { // Структура имени (имя-отчество-фамилия)
+typedef struct full_name{ // Структура имени (имя-отчество-фамилия)
   char first_name[50];
   char middle_name[50];
   char last_name[50];
@@ -28,10 +29,13 @@ typedef struct student{ // Структура студента: имя, день
   date birthday;
   zachet zacheti[10];
   exam exams[5];
-  struct student* next;
+  int id;
 } student;
 
-void input_student(student* std, int zach_num, int ex_num);
+void input_student(student* std);
 void print_student(student* std);
-void init_student(student* std);
 void edit_student(student* std);
+int is_student(student *std, full_name name);
+void find_fio_student(student *std[], int stud_num);
+void print_database(char* file_name);
+void output_database(student *std[], int stud_num);

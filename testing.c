@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct test {
   int value;
 } test;
 
 int main() {
-  test *array[50];
-  array[0] = malloc(sizeof(test));
-  test *(*p)[] = &array;
-  (*p)[0]->value = 5;
-  printf("%d", *(*p)[0]);
+  char *a = "aboba";
+  char *b = "aboba";
+  printf("%d", strcmp(a, b));
 }

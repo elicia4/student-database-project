@@ -1,14 +1,18 @@
 #include "student.h"
 
-void init_student(student* std) {
-  
+int is_student(student *std, full_name name) {
+  int res = 0;
+  if (!strcmp(std->name->first_name, name.first_name) && !strcmp(std->name->middle_name, name.middle_name) && !strcmp(std->name->last_name, name.last_name))
+  {
+    printf("\nСтудент найден!\n");
+    print_student(std);
+    res = 1;
+  }
+  return(res);
 }
 
-void edit_student(student* std) {
-  if (!std) {
-    printf("Данного студента нет в базе данных.\n");
-    break;
-  }
+// TO-DO: somehow check whether a given student exists before editing
+void edit_student(student* std) { // Редактирование студента
   char decision = 'y';
   do {
     char opt = 'a';
@@ -101,7 +105,7 @@ void print_student(student* std) { // Вывод информации о кон�
   }
 }
 
-void input_student(student* std, int zach_num, int ex_num){ // std - указатель на конкретного студента, zach_num - количество уже сданных зачетов
+void input_student(student* std){ // Ввод информации о студенте
   printf("\nВведите имя студента: ");
   scanf("%s", std->name->first_name);
   printf("Введите отчество студента: ");
@@ -146,4 +150,48 @@ void input_student(student* std, int zach_num, int ex_num){ // std - указа�
       break;
   }
 
+}
+
+void find_fio_student(student *std[], int stud_num){
+  full_name std_name;
+  printf("\nВведите имя студента: ");
+  scanf("%s", std_name.first_name);
+  printf("Введите отчество студента: ");
+  scanf("%s", std_name.middle_name);
+  printf("Введите фамилию студента: ");
+  scanf("%s", std_name.last_name);
+  int res = 0;
+  for (int i = 0; i < stud_num; i++)
+  {
+    if ((res = is_student(std[i], std_name)) == 1)
+    {
+      printf("\nНомер студента - %d", i);
+      break;
+    }
+  }
+  if (res == 0)
+  printf("Студента с таким ФИО нет в базе данных.\n");
+}
+
+void output_database(student *std[], int stud_num){
+  for (int i = 0; i < stud_num; i++)
+  {
+    printf("\nНомер студента - %d", i);
+    print_student(std[i]);
+  }
+}
+
+void print_database(char* file_name) // Печать всей базы данных
+{
+  char * print_command = "notepad /p ";
+
+  size_t file_name_size = strlen(file_name);
+  size_t command_size = file_name_size + strlen(print_command);
+
+  char * command = (char *)malloc(sizeof(char) * command_size + 1);
+
+  strncat(command, print_command, strlen(print_command));
+  strncat(command, file_name, file_name_size);
+  // system(command); - эта команда печатает, убрать коммент когда печатать
+  printf("%s\n", command); // демонстрация команды
 }
