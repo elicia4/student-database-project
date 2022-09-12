@@ -1,42 +1,22 @@
-2. File parser
-
-prompt is fucked for some reason, no idea what's wrong
-  FIX: scanf(" %c", &decision);
+FIX: scanf(" %c", &decision);
 The %c conversion specifier won't automatically skip any leading whitespace, so if there's a stray newline in the input stream (from a previous entry, for example) the scanf call will consume it immediately.
-
 
 // edit student:
   2. Doesn't check whether a given student exists or not
 
 9. Программа должна обнаруживать ошибки, вызванные неисправностями жесткого диска, отсутствием на нем свободного места и др
-  if malloc fails, then writing to fail failed? should work
+  if malloc fails, then memory allocation failed
+  if file append failes, then writing to file failed
 
 Algorithm:
 - Asks whether you want to read from a file or create new database (V)
-
   Create new database:
     - Creates new file
     - Appends students to it
     - Rewrites the entire database after any correction
     - Reads students
     - Asks for actions: 
-      3. Ввод(V), корректировка(V) и удаление информации о студенте
-      4. Поиск информации в базе данных по заданным фамилии, имени и отчеству студента (V)
-      5. Поиск информации о студентах, которым на момент поиска исполнилось заданное количество лет
-      6. Вывод на экран монитора всей информации из базы данных (V)
-      7. Вывод на экран монитора найденной информации из базы данных (Какой найденной информации? Что найти? Любой параметр из базы данных?) (V)
-      8. Вывод на печатающее устройство всей информации из базы данных (V)
-
-
-  Память:
-      добавить нового студента:
-        выделить память.
-          stud_num += 1;
-          malloc std[stud_num]...
-          input
-      удаление информации о студенте
-        если удален последний студент, то stud_num -= 1
-        освободить память
-      в конце программы:
-        вызвать функцию, освобождающую всю память 
       
+      5. Поиск информации о студентах, которым на момент поиска исполнилось заданное количество лет
+      
+--Database file cleanup

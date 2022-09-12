@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <locale.h>
 #include <string.h>
+#include <time.h>
 
 typedef struct { // Структура даты
   int day;
@@ -24,12 +25,12 @@ typedef struct { // Структура экзамена, дата + оценка
   int grade;
 } exam;
 
-typedef struct student{ // Структура студента: имя, день рождения, 10 зачетов, 5 экзаменов, ссылка на следующего студента
-  full_name name[50];
+typedef struct student{ // Структура студента: имя, день рождения, 10 зачетов, 5 экзаменов
+  full_name name[50]; // ???
   date birthday;
   zachet zacheti[10];
   exam exams[5];
-  int id;
+  // int id;
 } student;
 
 void input_student(student* std);
@@ -39,3 +40,8 @@ int is_student(student *std, full_name name);
 void find_fio_student(student *std[], int stud_num);
 void print_database(char* file_name);
 void output_database(student *std[], int stud_num);
+void get_database(char* file_name, student *std[], int *stud_num);
+void print_db_to_file(char *file_name, student *std[], int stud_num);
+void free_struct(student *std[], int stud_num); 
+void del_student(student *std);
+void find_age_student(student *std[], int stud_num);
