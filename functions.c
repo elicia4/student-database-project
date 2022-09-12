@@ -200,12 +200,12 @@ void find_age_student(student *std[], int stud_num){ // Поиск по возр
       res++;
     } else if (year_diff == stud_age) {
       if (month_diff > 0) {
-        printf("Студент #%d подходит!!!\n", i);
+        printf("Студент #%d подходит!!!\n", i + 1);
         print_student(std[i]);
         res++;
       } else if (month_diff == 0) {
         if (day_diff >= 0){
-          printf("Студент #%d подходит!!!\n", i);
+          printf("Студент #%d подходит!!!\n", i + 1);
           print_student(std[i]);
           res++;
         }
@@ -225,17 +225,14 @@ void output_database(student *std[], int stud_num){ // Вывод всей ба�
 }
 
 void print_database(char* file_name){ // Печать (на принтере) всей базы данных
-  char * print_command = "notepad /p ";
+  char print_command[150] = "notepad /p ";
 
   size_t file_name_size = strlen(file_name);
   size_t command_size = file_name_size + strlen(print_command);
 
-  char * command = (char *)malloc(sizeof(char) * command_size + 1);
-
-  strncat(command, print_command, strlen(print_command));
-  strncat(command, file_name, file_name_size);
-  // system(command); - эта команда печатает, убрать коммент когда печатать
-  printf("%s\n", command); // демонстрация команды
+  strcat(print_command, file_name);
+  //system(command); - эта команда печатает, убрать коммент когда печатать
+  printf("%s\n", print_command); // демонстрация команды
 }
 
 void get_database(char* file_name, student *std[], int *stud_num){ // Перенос всей базы данных из файла в массив
