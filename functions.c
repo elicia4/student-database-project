@@ -231,7 +231,7 @@ void print_database(char* file_name){ // Печать (на принтере) в
   size_t command_size = file_name_size + strlen(print_command);
 
   strcat(print_command, file_name);
-  //system(command); - эта команда печатает, убрать коммент когда печатать
+  //system(print_command); - эта команда печатает, убрать коммент когда печатать
   printf("%s\n", print_command); // демонстрация команды
 }
 
